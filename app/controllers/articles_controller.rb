@@ -1,8 +1,30 @@
 class ArticlesController < ApplicationController
-  def new; end
-
+  def index
+    @articles = Article.all
+  end
+  
+  def show
+    @article = Article.find params[:id]
+  end
+  
+  def new
+    @article = Article.new()
+  end
+  
   def create
-    # render plain: params[:articles].inspect
-    raise params.inspect
+    # render plain: params[:article].inspect
+    # raise params.inspect
+    @article = Article.new(article_params)
+    
+    if @article.save
+      redirect_to article_path(@article)
+    else
+      render 'new'
+    end
+  end
+
+  def article_params
+    params.require(:article).permit(:title, :text)
   end
 end
+

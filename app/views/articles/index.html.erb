@@ -1,0 +1,19 @@
+<h1>Listing articles</h1>
+
+<%= link_to "新規記事作成", new_article_path %>
+
+<table>
+  <tr>
+    <th>Title</th>
+    <th>Text</th>
+  </tr>
+  <% @articles.each do |article| %>
+    <tr>
+      <td><%= link_to article.title, article_path(article) %></td>
+      <td><%= article.text %></td>
+      <td></td>
+    </tr>
+  <% end %>
+</table>
+
+<%= link_to 'TOP', root_path %>
