@@ -1,5 +1,7 @@
 <h1>Listing articles</h1>
 
+<%#= image_tag 'baby_bear.jpg', alt: 'baby_bear', width: 400 %><br>
+
 <%= link_to "新規記事作成", new_article_path %>
 
 <table>
@@ -11,7 +13,8 @@
     <tr>
       <td><%= link_to article.title, article_path(article) %></td>
       <td><%= article.text %></td>
-      <td></td>
+      <td><%= link_to "Edit", edit_article_path(article) %></td>
+      <td><%= link_to "Destroy", article_path(article), method: :delete, data: {confirm: "Are you sure?"} %></td>
     </tr>
   <% end %>
 </table>
